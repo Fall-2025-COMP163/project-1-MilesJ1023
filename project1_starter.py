@@ -65,7 +65,7 @@ def calculate_stats(character_class, level):
     # TODO: Implement this function
     # Return a tuple: (strength, magic, health)
 
-
+import os
 def save_character(character, character_file):
     """
     Saves character to text file in specific format
@@ -80,6 +80,9 @@ def save_character(character, character_file):
     Health: [health]
     Gold: [gold]
     """
+    folder = os.path.dirname(character_file)
+    if folder != "" and not os.path.exists(folder):
+        return False
     with open(character_file, 'w') as file:
         file.write(f"Character Name: {character['name']}\n")
         file.write(f"Class: {character['class']}\n")
