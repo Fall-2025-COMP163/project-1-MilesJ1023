@@ -8,10 +8,11 @@ Example: AI helped with file I/O error handling logic in save_character function
 """
 
 def create_character(name, character_class):
+    
     level = 1
     gold = 100
     strength, magic, health = calculate_stats(character_class, level)
-    return f"name: {name}, class: {character_class}, level: {level}, strength: {strength}, magic: {magic}, health: {health}, gold: {gold}"
+    return {"name": name, "class": character_class, "level": level, "strength": strength, "magic": magic, "health": health, "gold": gold}
     """
     Creates a new character dictionary with calculated stats
     Returns: dictionary with keys: name, class, level, strength, magic, health, gold
@@ -90,14 +91,14 @@ def save_character(character, character_file):
     return True
     # TODO: Implement this function
     # Remember to handle file errors gracefully
-    pass
+
 import os
 def load_character(filename):
     """
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
     """
-    if not os.path.exists(rf"C:\Users\miles\github-classroom\Fall-2025-COMP163\project-1-MilesJ1023\{filename}>"):
+    if not os.path.exists(filename):
         return None
     with open(filename, 'r') as file:
         lines = file.readlines()
@@ -122,7 +123,7 @@ def load_character(filename):
         
     # TODO: Implement this function
     # Remember to handle file not found errors
-    pass
+
 
 def display_character(character):
     
@@ -172,6 +173,14 @@ def level_up(character):
 if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
     print("Test your functions here!")
+    char = create_character("Aria", "Mage")
+    display_character(char)
+    save_character(char, "test_char.txt")
+    loaded = load_character("test_char.txt")
+    display_character(loaded)
+    
+    level_up(char)
+    display_character(char)
     
     # Example usage:
     # char = create_character("TestHero", "Warrior")
